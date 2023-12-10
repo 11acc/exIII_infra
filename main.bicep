@@ -8,7 +8,6 @@ param wapp_Name string
 
 param DOCKER_REGISTRY_SERVER_URL string
 param DOCKER_REGISTRY_SERVER_USERNAME string
-
 @secure()
 param DOCKER_REGISTRY_SERVER_PASSWORD string
 
