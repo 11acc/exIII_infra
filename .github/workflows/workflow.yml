@@ -1,0 +1,41 @@
+name: ExIII Infra 2 Azure
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  RESOURCE_GROUP: aguadamillas_students_1
+  SUBSCRIPTION_ID: e0b9cada-61bc-4b5a-bd7a-52c606726b3b
+  USER_ALIAS: 11acc
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+      - name: bicep linter
+        run: az bicep build --file ./main.bicep
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v2
+      - name: set up azure cli
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: deploy infra
+        run: |
+          az deployment group create \
+          --name ${{ env.USER_ALIAS }}Deployment \
+          --resource-group ${{ env.RESOURCE_GROUP }} \
+          --template-file ./main.bicep \
+          --parameters ./parameters.json \
+          --parameters DOCKER_REGISTRY_SERVER_URL=${{ secrets.DOCKER_REGISTRY_SERVER_URL }} \
+                        DOCKER_REGISTRY_SERVER_USERNAME=${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }} \
+                        DOCKER_REGISTRY_SERVER_PASSWORD=${{ secrets.DOCKER_REGISTRY_SERVER_PASSWORD }}
