@@ -35,7 +35,7 @@ jobs:
           --name ${{ env.USER_ALIAS }}Deployment \
           --resource-group ${{ env.RESOURCE_GROUP }} \
           --template-file ./main.bicep \
-          --parameters ./main.parameters.json \
+          --parameters ./parameters.json \
           --parameters DOCKER_REGISTRY_SERVER_URL=${{ secrets.DOCKER_REGISTRY_SERVER_URL }} \
                         DOCKER_REGISTRY_SERVER_USERNAME=${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }} \
                         DOCKER_REGISTRY_SERVER_PASSWORD=${{ secrets.DOCKER_REGISTRY_SERVER_PASSWORD }}
