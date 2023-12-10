@@ -1,0 +1,33 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "c_RegistryName": {
+            "value": "11aContainers"
+        },
+        "c_RegistryImageName": {
+            "value": "11aRIN"
+        },
+        "c_RegistryImageVersion": {
+            "value": "11aRIV"
+        },
+        "loc": {
+            "value": "Australia Central"
+        },
+        "appservplan_Name": {
+            "value": "11aASPN"
+        },
+        "wapp_Name": {
+            "value": "11aWAN"
+        },
+        "DOCKER_REGISTRY_SERVER_URL": {
+            "value": "<DOCKER_REGISTRY_SERVER_URL_VALUE>"
+        },
+        "DOCKER_REGISTRY_SERVER_USERNAME": {
+            "value": "<DOCKER_REGISTRY_SERVER_USERNAME_VALUE>"
+        },
+        "DOCKER_REGISTRY_SERVER_PASSWORD": {
+            "value": "<DOCKER_REGISTRY_SERVER_PASSWORD_VALUE>"
+        }
+    }
+}
